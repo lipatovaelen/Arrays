@@ -23,7 +23,7 @@ void Sort(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
 int Sum(int arr[], const int n);
 double Sum(double arr[], const int n);
-void Sum(int arr[ROWS][COLS], const int ROWS, const int COLS);
+int Sum(int arr[ROWS][COLS], const int ROWS, const int COLS);
 double Sum(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
 
@@ -41,7 +41,7 @@ double minValueIn(double arr[ROWS][COLS], const int ROWS, const int COLS);
 int maxValueIn(int arr[], const int n);
 double maxValueIn(double arr[], const int n);
 double maxValueIn(int arr[ROWS][COLS], const int ROWS, const int COLS);
-double maxValueIn(double arr[ROWS][COLS], const int ROWS, const int COLS)
+double maxValueIn(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
 void UniqueRand(int arr[], const int n);
 
@@ -216,9 +216,9 @@ void Sort(int arr[ROWS][COLS], const int ROWS, const int COLS)
 		{//Перебирается только правая часть массива относительно выбранного элемента.
 			if (arr[j] < arr[i])
 			{
-				int buffer = arr[i];
-				arr[i] = arr[j];
-				arr[j] = buffer;
+				/*int buffer = arr[i];
+				arr[i][j] = arr[j];
+				arr[j] = buffer;*/
 			}
 		}
 	}
@@ -251,9 +251,8 @@ int Sum(int arr[ROWS][COLS], const int ROWS, const int COLS)
 	for (int i = 0; i < ROWS; i++)
 	{
 		for (int j = 0; j < COLS; j++)
-
 		{
-			sum += arr[j];
+			sum += arr[i][j];
 		}
 	}
 	return sum;
@@ -262,12 +261,11 @@ int Sum(int arr[ROWS][COLS], const int ROWS, const int COLS)
 double Sum(double arr[ROWS][COLS], const int ROWS, const int COLS)
 {
 	double sum = 0;
-	for (double i = 0; i < ROWS; i++)
+	for (int i = 0; i < ROWS; i++)
 	{
-		for (double j = 0; j < COLS; j++)
-
+		for (int j = 0; j < COLS; j++)
 		{
-			sum += arr[j];
+			sum += arr[i][j];
 		}
 	}
 	return sum;
@@ -283,9 +281,9 @@ double Avg(double arr[], const int n)
 	return Sum(arr, n) / n;
 }
 
-double Avg(arr[ROWS][COLS], const int ROWS, const int COLS)
+double Avg(int arr[ROWS][COLS], const int ROWS, const int COLS)
 {
-	return (double)Sum(arr, n) / n;
+	return (double)Sum(arr, ROWS, COLS) / (ROWS * COLS);
 }
 
 
