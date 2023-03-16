@@ -10,37 +10,44 @@ void FillRand(double arr[], const int n, int minRand = 0, int maxRand = 100);
 void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS, int minRand = 0, int maxRand = 100);
 void FillRand(double arr[ROWS][COLS], const int ROWS, const int COLS, int minRand = 0, int maxRand = 100);
 
-void Print(int arr[], const int n);
+template<typename T> //имя шаблонного типа одномерного массива
+void Print(T arr[], const int n);
 void Print(double arr[], const int n);
+
 void Print(int arr[ROWS][COLS], const int ROWS, const int COLS);
 void Print(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
-void Sort(int arr[], const int n);
+template<typename T> //имя шаблонного типа одномерного массива
+void Sort(T arr[], const int n);
 void Sort(double arr[], const int n);
 void Sort(int arr[ROWS][COLS], const int ROWS, const int COLS);
 void Sort(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
-
-int Sum(int arr[], const int n);
+template<typename T>//имя шаблонного типа одномерного массива
+int Sum(T arr[], const int n);
 double Sum(double arr[], const int n);
 int Sum(int arr[ROWS][COLS], const int ROWS, const int COLS);
 double Sum(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
-
-double Avg(int arr[], const int n);
+template<typename T>//имя шаблонного типа одномерного массива
+double Avg(T arr[], const int n);
 double Avg(double arr[], const int n);
-double Avg(int arr[ROWS][COLS], const int ROWS, const int COLS);
+template<typename T>//имя шаблонного типа двумерного массива
+double Avg(T arr[ROWS][COLS], const int ROWS, const int COLS);
 double Avg(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
-
-int minValueIn(int arr[], const int n);
+template<typename T>//имя шаблонного типа одномерного массива
+int minValueIn(T arr[], const int n);
 double minValueIn(double arr[], const int n);
-double minValueIn(int arr[ROWS][COLS], const int ROWS, const int COLS);
+template<typename T>//имя шаблонного типа двумерного массива
+T minValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS);
 double minValueIn(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
-int maxValueIn(int arr[], const int n);
+template<typename T>//имя шаблонного типа одномерного массива
+int maxValueIn(T arr[], const int n);
 double maxValueIn(double arr[], const int n);
-double maxValueIn(int arr[ROWS][COLS], const int ROWS, const int COLS);
+template<typename T>//имя шаблонного типа двумерного массива
+T maxValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS);
 double maxValueIn(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
 void UniqueRand(int arr[], const int n);
@@ -132,8 +139,8 @@ void FillRand(double arr[ROWS][COLS], const int ROWS, const int COLS, int minRan
 		}
 	}
 }
-
-void Print(int arr[], const int n)
+template<typename T>
+void Print(T arr[], const int n)
 {
 	//Вывод массива на экран:
 	for (int i = 0; i < n; i++)
@@ -151,6 +158,7 @@ void Print(double arr[], const int n)
 	}
 	cout << endl;
 }
+
 void Print(int arr[ROWS][COLS], const int ROWS, const int COLS)
 {
 	for (int i = 0; i < ROWS; i++)
@@ -174,7 +182,9 @@ void Print(double arr[ROWS][COLS], const int ROWS, const int COLS)
 	}
 }
 
-void Sort(int arr[], const int n)
+template<typename T>
+
+void Sort(T arr[], const int n)
 {
 	//Сортировка массива:
 	for (int i = 0; i < n; i++)	//Счетчик 'i' выбирает элемент, в который нкжно поместить минимальное значение
@@ -224,9 +234,8 @@ void Sort(int arr[ROWS][COLS], const int ROWS, const int COLS)
 	}
 }
 
-
-
-int Sum(int arr[], const int n)
+template<typename T>//имя шаблонного типа одномерного массива
+int Sum(T arr[], const int n)
 {
 	int sum = 0;
 	for (int i = 0; i < n; i++)
@@ -271,8 +280,8 @@ double Sum(double arr[ROWS][COLS], const int ROWS, const int COLS)
 	return sum;
 }
 
-
-double Avg(int arr[], const int n)
+template<typename T>//имя шаблонного типа одномерного массива
+double Avg(T arr[], const int n)
 {
 	return (double)Sum(arr, n) / n;
 }
@@ -280,20 +289,15 @@ double Avg(double arr[], const int n)
 {
 	return Sum(arr, n) / n;
 }
-
-double Avg(int arr[ROWS][COLS], const int ROWS, const int COLS)
+template<typename T>//имя шаблонного типа двумерного массива
+double Avg(T arr[ROWS][COLS], const int ROWS, const int COLS)
 {
 	return (double)Sum(arr, ROWS, COLS) / (ROWS * COLS);
 }
 
 
-
-
-
-
-
-
-int minValueIn(int arr[], const int n)
+template<typename T>//имя шаблонного типа одномерного массива
+int minValueIn(T arr[], const int n)
 {
 	int min = arr[0];
 	for (int i = 0; i < n; i++)
@@ -311,8 +315,23 @@ double minValueIn(double arr[], const int n)
 	}
 	return min;
 }
+template<typename T>//имя шаблонного типа двумерного массива
+T minValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	int min = arr[0][0];
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (arr[i][j] < min)min = arr[i][j];
+		}
+	}
+	return min;
+}
 
-int maxValueIn(int arr[], const int n)
+
+template<typename T>//имя шаблонного типа одномерного массива
+int maxValueIn(T arr[], const int n)
 {
 	int max = arr[0];
 	for (int i = 0; i < n; i++)
@@ -330,7 +349,19 @@ double maxValueIn(double arr[], const int n)
 	}
 	return max;
 }
-
+template<typename T>//имя шаблонного типа двумерного массива
+T maxValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	int max = arr[0][0];
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (arr[i][j] > max)max = arr[i][j];
+		}
+	}
+	return max;
+}
 void UniqueRand(int arr[], const int n)
 {
 	for (int i = 0; i < n; i++)
